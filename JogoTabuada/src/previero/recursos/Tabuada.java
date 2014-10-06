@@ -1,4 +1,4 @@
-package previero;
+package previero.recursos;
 
 import java.util.Random;
 import java.util.Set;

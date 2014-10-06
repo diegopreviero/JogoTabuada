@@ -1,4 +1,4 @@
-package jogo;
+package previero.jogo;
 
 import java.awt.EventQueue;
 
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import previero.Tabuada;
+import previero.recursos.Tabuada;
 
 import java.awt.Font;
 
