@@ -91,6 +91,12 @@ public class JogoTabuada {
 	int acertos = 0;
 	int erros = 0;
 
+
+
+
+
+
+
 	public void reset(){
 		Tabuada t = new Tabuada(3, 5, 3, 0);
 		resultado = Integer.toString(t.getProduto());
@@ -105,10 +111,10 @@ public class JogoTabuada {
 		if ((acertos+erros) < qtdeQuestoes) {
 
 			if (resultado.equals(valor)) {
-				JOptionPane.showMessageDialog(null, "Certo !!!");
+				//JOptionPane.showMessageDialog(null, "Certo !!!");
 				acertos++;
 			}else{
-				JOptionPane.showMessageDialog(null, "Errado !!!");
+				//JOptionPane.showMessageDialog(null, "Errado !!!");
 				erros++;
 			}
 		}
@@ -117,8 +123,8 @@ public class JogoTabuada {
 			JOptionPane.showMessageDialog(null,  "   R E S U L T A D O\n\n************************\n\nAcertos: " + acertos	+"\nErros: " + erros +	"\n\n************************\n************************\n");
 			System.exit(0);
 		}
-		
+
 		reset();
-		
+
 	}
 }
