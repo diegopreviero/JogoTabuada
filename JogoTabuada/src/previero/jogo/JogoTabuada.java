@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import previero.recursos.Tabuada;
 
 import java.awt.Font;
-
+//*******
 public class JogoTabuada {
 
 	private JFrame frmJogoDaTabuada;
