@@ -1,3 +1,13 @@
+/*
+ * ELABORAR:
+ * 
+ * --dificuldade (quantas questoes de cada fase) 
+ * 
+ * --REGRAS:
+ * ----acertar 70% de cada fase
+ * ----reiniciar fase caso não alcance esse percentual 
+ */
+
 package previero.testes;
 
 import java.util.ArrayList;
@@ -10,7 +20,7 @@ public class testeFases {
 	public static void main(String[] args) {
 		testeFases t = new testeFases();
 
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
 			t.l.add(i);
 		}
 
@@ -22,11 +32,6 @@ public class testeFases {
 		t.excluir();
 
 	}
-
-
-	//****************************************************************
-	//****************************************************************
-	//LEVAR PARA OUTRA CLASSE
 
 	Random r = new Random();
 	int multiplicador;
@@ -51,10 +56,6 @@ public class testeFases {
 
 			multiplicador = fase[0][0];
 			multiplicando = r.nextInt(11);
-
-			System.out.println("Q: "+questao);
-			//System.out.println("A: "+multiplicador);
-			System.out.println("B: "+multiplicando + "\n");
 		}
 
 		questao++;
@@ -72,16 +73,3 @@ public class testeFases {
 	}
 
 }
-
-/*
- * ELABORAR:
- * --dificuldade (quantas questoes de cada fase)
- * 
- * 
- * --REGRAS:
- * acertar 70% de cada fase
- * reiniciar fase caso não alcance esse percentual 
- */
-
-//****************************************************************
-//****************************************************************
