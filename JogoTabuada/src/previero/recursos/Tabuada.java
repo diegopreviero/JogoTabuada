@@ -82,11 +82,14 @@ public class Tabuada {
 		nivel();
 
 		setProduto(multiplicador, multiplicando);
+		
+		System.out.println(toString()+"  "+getProduto());
 
 		int resp = getProduto();
 		for (int i = 0; rand.size() < qtdeBotoes; i++) {//quantidade de botoes para escolha
 			rand.add(resp);//na primeira execução adiciona o produto e nas seguintes as respostas alternativas
 			resp = valoresAleatorios[r.nextInt(valoresAleatorios.length)] + getProduto();//soma o valor do produto a um valor aleatorio
+			System.out.println("resp: "+resp);
 		}
 
 		resultados = rand.toArray(new Integer[0]);//transforma o SET em array para facilitar iteracao
