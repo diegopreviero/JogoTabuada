@@ -37,6 +37,10 @@ public class testeFases {
 	Random r = new Random();
 	int multiplicador;
 	int multiplicando = 2;
+	
+	
+	//daqui pra baixo copiado para Tabuada
+	
 	int level = 1;
 	int questao = 1;
 

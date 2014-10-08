@@ -74,25 +74,29 @@ public class JogoTabuada {
 		lblConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConta.setBounds(44, 47, 355, 58);
 		frmJogoDaTabuada.getContentPane().add(lblConta);
-
+		
 		reset();
 	}
 
 	//****************************************************************
 
-
+	Tabuada t = new Tabuada();
 	JLabel lblConta = new JLabel();
 	JButton btR1 = new JButton();
 	JButton btR2 = new JButton();
 	JButton btR3 = new JButton();
 	String resultado;
 
-	int qtdeQuestoes = 10;
+	int qtdeQuestoes = 30;
 	int acertos = 0;
 	int erros = 0;
 
 	public void reset(){
-		Tabuada t = new Tabuada(3, 5, 3, 0);
+		//Tabuada t = new Tabuada(3, 5, 3, 0);
+		
+		
+		t.nivel();
+		
 		resultado = Integer.toString(t.getProduto());
 		lblConta.setText(t.toString());
 		btR1.setText(Integer.toString(t.getResultados()[0]));
@@ -102,6 +106,7 @@ public class JogoTabuada {
 
 	public void confere(String valor){
 
+		t.setQuestao();
 		if ((acertos+erros) < qtdeQuestoes) {
 
 			if (resultado.equals(valor)) {
@@ -117,6 +122,7 @@ public class JogoTabuada {
 		}
 
 		reset();
+		System.out.println("qtde: "+acertos+erros);
 
 	}
 }
