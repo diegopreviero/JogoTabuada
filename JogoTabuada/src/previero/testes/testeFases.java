@@ -6,6 +6,11 @@
  * --REGRAS:
  * ----acertar 70% de cada fase
  * ----reiniciar fase caso não alcance esse percentual 
+ * 
+ * --MULTIPLAYER
+ * ----mesma tabuada para todos, o primeiro q responder ativa um cronometro para os outros jogadores
+ * ----pontuacao proporcional ao ranquamento de respostas
+ * ----nome do player
  */
 
 package previero.testes;
@@ -20,16 +25,12 @@ public class testeFases {
 	public static void main(String[] args) {
 		testeFases t = new testeFases();
 
-		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
-			t.l.add(i);
-		}
+		t.iniciaLista();
 
 		for (int i = 0; i < 11; i++) {
 			t.escolheMultiplicando();
 			System.out.println(t.multiplicando);
 		}
-
-		t.excluir();
 
 	}
 
@@ -46,6 +47,7 @@ public class testeFases {
 			/* 4 */ {7,8,9}
 	};
 
+	
 	List<Integer> l = new ArrayList<Integer>();
 
 
@@ -61,15 +63,26 @@ public class testeFases {
 		questao++;
 	}
 
+	
+	
 	public void escolheMultiplicando() {
 		Collections.shuffle(l);
 		multiplicando = l.get(0);
 		l.remove(0);
 	}
+	
 
-	public void excluir(){
+	public void iniciaLista(){
+		
 		l.removeAll(l);
 		System.out.println("tamanho: " + l.size());
+		
+		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
+			l.add(i);
+		}
+
 	}
+	
+
 
 }

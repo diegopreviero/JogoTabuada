@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import previero.recursos.Tabuada;
 
 import java.awt.Font;
-//*******
+
 public class JogoTabuada {
 
 	private JFrame frmJogoDaTabuada;
@@ -81,21 +81,15 @@ public class JogoTabuada {
 	//****************************************************************
 
 
-	JLabel lblConta = new JLabel("New label");
-	JButton btR1 = new JButton("New button");
-	JButton btR2 = new JButton("New button");
-	JButton btR3 = new JButton("New button");
+	JLabel lblConta = new JLabel();
+	JButton btR1 = new JButton();
+	JButton btR2 = new JButton();
+	JButton btR3 = new JButton();
 	String resultado;
 
 	int qtdeQuestoes = 10;
 	int acertos = 0;
 	int erros = 0;
-
-
-
-
-
-
 
 	public void reset(){
 		Tabuada t = new Tabuada(3, 5, 3, 0);
@@ -111,10 +105,8 @@ public class JogoTabuada {
 		if ((acertos+erros) < qtdeQuestoes) {
 
 			if (resultado.equals(valor)) {
-				//JOptionPane.showMessageDialog(null, "Certo !!!");
 				acertos++;
 			}else{
-				//JOptionPane.showMessageDialog(null, "Errado !!!");
 				erros++;
 			}
 		}
