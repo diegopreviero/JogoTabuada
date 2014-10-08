@@ -1,20 +1,17 @@
 package previero.jogo;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import previero.recursos.Tabuada;
-
-import java.awt.Font;
 
 public class JogoTabuada {
 
@@ -74,7 +71,7 @@ public class JogoTabuada {
 		lblConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConta.setBounds(44, 47, 355, 58);
 		frmJogoDaTabuada.getContentPane().add(lblConta);
-		
+
 		reset();
 	}
 
@@ -87,21 +84,21 @@ public class JogoTabuada {
 	JButton btR3 = new JButton();
 	String resultado;
 
-	int qtdeQuestoes = 30;
+	int qtdeQuestoes = 15;
 	int acertos = 0;
 	int erros = 0;
 
 	public void reset(){
-		//Tabuada t = new Tabuada(3, 5, 3, 0);
-		
-		
+
 		t.nivel();
-		
+
 		resultado = Integer.toString(t.getProduto());
 		lblConta.setText(t.toString());
+
 		btR1.setText(Integer.toString(t.getResultados()[0]));
 		btR2.setText(Integer.toString(t.getResultados()[1]));
 		btR3.setText(Integer.toString(t.getResultados()[2]));		
+
 	}
 
 	public void confere(String valor){
@@ -122,7 +119,6 @@ public class JogoTabuada {
 		}
 
 		reset();
-		System.out.println("qtde: "+acertos+erros);
 
 	}
 }

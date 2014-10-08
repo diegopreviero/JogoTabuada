@@ -11,47 +11,40 @@ public class Tabuada {
 
 	//****************************************************************
 
-	private Random r = new Random();
-	private Set<Integer> rand = new TreeSet<Integer>();//TreeSet usado para ordenar os valores e nao permitir valores repetidos -- alimenta o array 'resultados'
-	private int valoresAleatorios[] = {-1,-2,-3,-4,1,2,3,4};
-	private int fase[][] = { {1,2,3}, {3,4,5}, {5,6,7}, {7,8,9} };
+	Random r = new Random();
+	Set<Integer> rand = new TreeSet<Integer>();//TreeSet usado para ordenar os valores e nao permitir valores repetidos -- alimenta o array 'resultados'
+	int valoresAleatorios[] = {-1,-2,-3,-4,1,2,3,4};
+	int fase[][] = { {1,2,3}, {3,4,5}, {5,6,7}, {7,8,9} };
 
-	private int multiplicador;
-	private int multiplicando;
-	private int produto;
+	int multiplicador;
+	int multiplicando;
+	int produto;
 
-	private int qtdeBotoes = 3;//remover depois *************
-	private int limiteTabuada;	
-	private Integer[] resultados;//array com todas as respostas usado para preencher os botoes
+	int qtdeBotoes = 3;//remover depois *************
+	int limiteTabuada;	
+	Integer[] resultados = null;//array com todas as respostas usado para preencher os botoes
 
-	private int level = 1;
-	private int questao;
+	int level = 1;
+	int questao = 0;
 
-	private List<Integer> l = new ArrayList<Integer>();//multiplicando
+	List<Integer> l = new ArrayList<Integer>();//multiplicando
 
-	//********************************************************************************************************************************************	
-
+	//*******************************************************************	
 
 	public void nivel(){
 
-		System.out.println("questao: " + questao);
-
 		if (questao < 5) {
-			
+
 
 			if (level == 1) {
-				setMultiplicador(fase[0][0]);
-				setMultiplicando();
+				setRespostas(0, 0);
 			}else
 				if (level == 2) {
-					setMultiplicador(fase[0][1]);
-					setMultiplicando();
+					setRespostas(0, 1);
 				}else
 					if (level == 3) {
-						setMultiplicador(fase[0][2]);
-						setMultiplicando();
-					}
-			
+						setRespostas(0, 2);					}
+
 
 		}else{
 			resetaMultiplicandos();
@@ -61,79 +54,48 @@ public class Tabuada {
 	}
 
 
-
-
 	public void resetaMultiplicandos(){
 
 		questao = 0;
 		l.removeAll(l);
-		System.out.println("tamanho: " + l.size());
 
 		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
 			l.add(i);
 		}
-		
-		setMultiplicando();
 
 	}
 
-	public void initialize(){
+	public void setRespostas(int a, int b){
+		setMultiplicador(fase[a][b]);
+		setMultiplicando();
+		setProduto(getMultiplicador(), getMultiplicando());
 
-		resetaMultiplicandos();
-		setQuestao();
-		nivel();
-
-		setProduto(multiplicador, multiplicando);
-		
-		System.out.println(toString()+"  "+getProduto());
-
+		rand.removeAll(rand);
 		int resp = getProduto();
 		for (int i = 0; rand.size() < qtdeBotoes; i++) {//quantidade de botoes para escolha
 			rand.add(resp);//na primeira execução adiciona o produto e nas seguintes as respostas alternativas
 			resp = valoresAleatorios[r.nextInt(valoresAleatorios.length)] + getProduto();//soma o valor do produto a um valor aleatorio
-			System.out.println("resp: "+resp);
+			if (resp < 0) {//transforma os numeros negativos em positivos
+				resp = resp*-1;
+			}
 		}
 
 		resultados = rand.toArray(new Integer[0]);//transforma o SET em array para facilitar iteracao
 
 		/*for (int i = 0; i < rand.size(); i++) {
-			//System.out.println("i= " + i + " - " + resultados[i]);
+			System.out.println("i= " + i + " - " + resultados[i]);
 		}
 		System.out.println("\n\n");*/
 
 	}
 
+	public void initialize(){
+		resetaMultiplicandos();
+		setQuestao();
+		nivel();
+	}
+
 	//********************************************************************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//****************************************************************
 
 	public Tabuada() {
 
@@ -155,8 +117,6 @@ public class Tabuada {
 	}
 
 	//****************************************************************
-
-
 
 	public int getProduto() {
 		return produto;
@@ -217,10 +177,7 @@ public class Tabuada {
 	}
 
 	public String toString(){
-		return multiplicador + " x " + multiplicando + " = ?";
+		return getMultiplicador() + " x " + getMultiplicando() + " = ?";
 	}
-
-	//****************************************************************
-
 
 }
