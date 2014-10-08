@@ -72,6 +72,8 @@ public class Tabuada {
 		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
 			l.add(i);
 		}
+		
+		setMultiplicando();
 
 	}
 
