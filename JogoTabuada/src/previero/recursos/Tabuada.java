@@ -31,26 +31,72 @@ public class Tabuada {
 
 	//*******************************************************************	
 
+	int corretas = 0;
+	int array = 0;
+
 	public void nivel(){
 
 		setQuestao();
 
+		switch (array) {
+		case 0:
+			teste(array);
+			break
+			;
+		case 1:
+			teste(array);
+			break;
+		case 2:
+			teste(array);
+			break;
+		case 3:
+			teste(array);
+			break;
+
+		default:
+			break;
+		}
+
+		if (corretas == 8) {
+			array++;
+			corretas = 0;
+			nivel();
+		}
+
+
+	}
+
+
+	/*
+	 * ELABORAR:
+	 * TRAZER A CONTAGEM DE ACERTOS E ERROS PARA ESTA CLASSE (QTDE DE QUESTOES)
+	 * 
+	 * 
+	 */
+	
+
+
+	public void teste(int a){
+		/*******************************/
 		if (getQuestao() <= 5) {
 
 			switch (level) {
 			case 1:
-				setRespostas(0, 0);
+				setRespostas(a, 0);
 				break;
 			case 2:
-				setRespostas(0, 1);
+				setRespostas(a, 1);
 				break;
 			case 3:
-				setRespostas(0, 2);
+				setRespostas(a, 2);
 				break;
 
 			default:
 				break;
 			}
+
+			corretas++;
+			System.out.println("corretas: "+corretas);
 
 		}else{
 
@@ -59,8 +105,16 @@ public class Tabuada {
 			level++;
 			nivel();
 		}
-
+		/*******************************/
 	}
+
+
+
+
+
+
+
+
 
 
 	public void resetaMultiplicandos(){
@@ -96,34 +150,15 @@ public class Tabuada {
 		}
 		System.out.println("\n\n");*/
 
-
-
 	}
 
-	public void initialize(){
-
-		resetaMultiplicandos();
-
-	}
 
 	//********************************************************************************************************************************************
 
 	public Tabuada() {
 
 		super();
-		initialize();
-
-	}
-
-	public Tabuada(int multiplicador, int multiplicando, int qtdeBotoes, int limiteTabuada) {
-
-		super();
-		this.multiplicador = multiplicador;
-		this.multiplicando = multiplicando;
-		this.qtdeBotoes    = qtdeBotoes;
-		this.limiteTabuada = limiteTabuada;
-
-		initialize();
+		resetaMultiplicandos();
 
 	}
 

@@ -85,6 +85,11 @@ public class JogoTabuada {
 	String resultado;
 
 	int qtdeQuestoes = 15;
+	
+	public int getQtdeQuestoes(){
+		return this.qtdeQuestoes;
+	}
+	
 	int acertos = 0;
 	int erros = 0;
 
