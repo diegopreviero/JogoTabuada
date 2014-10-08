@@ -97,13 +97,18 @@ public class JogoTabuada {
 
 		btR1.setText(Integer.toString(t.getResultados()[0]));
 		btR2.setText(Integer.toString(t.getResultados()[1]));
-		btR3.setText(Integer.toString(t.getResultados()[2]));		
+		btR3.setText(Integer.toString(t.getResultados()[2]));	
+
+		System.out.println("toString  :  " + t.toString());
+		System.out.println("Conta     :  " + t.getMultiplicador() + " x " + t.getMultiplicando() + " = " + t.getProduto());
+		System.out.println("Respostas :  " + t.getResultados()[0] + " , " +  t.getResultados()[1] + " , " + t.getResultados()[2]);
+		System.out.println("Questão   :  " + t.getQuestao());
+		System.out.println("Level     :  " + t.getLevel() + "\n");
 
 	}
 
 	public void confere(String valor){
 
-		t.setQuestao();
 		if ((acertos+erros) < qtdeQuestoes) {
 
 			if (resultado.equals(valor)) {

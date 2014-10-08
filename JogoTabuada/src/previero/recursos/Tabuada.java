@@ -11,44 +11,53 @@ public class Tabuada {
 
 	//****************************************************************
 
-	Random r = new Random();
-	Set<Integer> rand = new TreeSet<Integer>();//TreeSet usado para ordenar os valores e nao permitir valores repetidos -- alimenta o array 'resultados'
-	int valoresAleatorios[] = {-1,-2,-3,-4,1,2,3,4};
-	int fase[][] = { {1,2,3}, {3,4,5}, {5,6,7}, {7,8,9} };
+	private Random r = new Random();
+	private Set<Integer> rand = new TreeSet<Integer>();//TreeSet usado para ordenar os valores e nao permitir valores repetidos -- alimenta o array 'resultados'
+	private int valoresAleatorios[] = {-1,-2,-3,-4,1,2,3,4};
+	private int fase[][] = { {1,2,3}, {3,4,5}, {5,6,7}, {7,8,9} };
 
-	int multiplicador;
-	int multiplicando;
-	int produto;
+	private int multiplicador;
+	private int multiplicando;
+	private int produto;
 
-	int qtdeBotoes = 3;//remover depois *************
-	int limiteTabuada;	
-	Integer[] resultados = null;//array com todas as respostas usado para preencher os botoes
+	private int qtdeBotoes = 3;//remover depois *************
+	private int limiteTabuada;	
+	private Integer[] resultados = null;//array com todas as respostas usado para preencher os botoes
 
-	int level = 1;
-	int questao = 0;
+	private int level = 1;
+	private int questao = 0;
 
-	List<Integer> l = new ArrayList<Integer>();//multiplicando
+	private List<Integer> l = new ArrayList<Integer>();//multiplicando
 
 	//*******************************************************************	
 
 	public void nivel(){
 
-		if (questao < 5) {
+		setQuestao();
 
+		if (getQuestao() <= 5) {
 
-			if (level == 1) {
+			switch (level) {
+			case 1:
 				setRespostas(0, 0);
-			}else
-				if (level == 2) {
-					setRespostas(0, 1);
-				}else
-					if (level == 3) {
-						setRespostas(0, 2);					}
+				break;
+			case 2:
+				setRespostas(0, 1);
+				break;
+			case 3:
+				setRespostas(0, 2);
+				break;
 
+			default:
+				break;
+			}
 
 		}else{
+
 			resetaMultiplicandos();
+			questao = 0;
 			level++;
+			nivel();
 		}
 
 	}
@@ -56,7 +65,6 @@ public class Tabuada {
 
 	public void resetaMultiplicandos(){
 
-		questao = 0;
 		l.removeAll(l);
 
 		for (int i = 0; i < 11; i++) {//preenche a lista de multiplicandos
@@ -66,6 +74,7 @@ public class Tabuada {
 	}
 
 	public void setRespostas(int a, int b){
+
 		setMultiplicador(fase[a][b]);
 		setMultiplicando();
 		setProduto(getMultiplicador(), getMultiplicando());
@@ -87,12 +96,14 @@ public class Tabuada {
 		}
 		System.out.println("\n\n");*/
 
+
+
 	}
 
 	public void initialize(){
+
 		resetaMultiplicandos();
-		setQuestao();
-		nivel();
+
 	}
 
 	//********************************************************************************************************************************************
@@ -117,6 +128,14 @@ public class Tabuada {
 	}
 
 	//****************************************************************
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	public int getProduto() {
 		return produto;
@@ -177,7 +196,7 @@ public class Tabuada {
 	}
 
 	public String toString(){
-		return getMultiplicador() + " x " + getMultiplicando() + " = ?";
+		return getMultiplicador() + "x" + getMultiplicando() + " = ?";
 	}
 
 }
