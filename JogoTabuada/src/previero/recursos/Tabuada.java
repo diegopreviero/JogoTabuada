@@ -28,7 +28,7 @@ public class Tabuada {
 
 	int array = 0;
 	private int level = 1;
-	
+
 	private int questao = 0;
 
 	private List<Integer> l = new ArrayList<Integer>();//multiplicando
@@ -39,7 +39,7 @@ public class Tabuada {
 	int qtdeQuestoes = 40;
 	int qtdeQuestoesPorFase = Math.round(qtdeQuestoes/4);
 	int percentualAcerto;
-	
+
 	//*******************************************************************	
 
 	public void confere(String resposta){
