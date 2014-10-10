@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JOptionPane;
+
 public class Tabuada {
 
 	//****************************************************************
@@ -24,15 +26,43 @@ public class Tabuada {
 	private int limiteTabuada;	
 	private Integer[] resultados = null;//array com todas as respostas usado para preencher os botoes
 
+	int array = 0;
 	private int level = 1;
+	
 	private int questao = 0;
 
 	private List<Integer> l = new ArrayList<Integer>();//multiplicando
 
+	int numeroDaQuestao = 0;
+	int certo;
+	int errado;
+	int qtdeQuestoes = 40;
+	int qtdeQuestoesPorFase = Math.round(qtdeQuestoes/4);
+	int percentualAcerto;
+	
 	//*******************************************************************	
 
-	int corretas = 0;
-	int array = 0;
+	public void confere(String resposta){
+
+		int valor = Integer.parseInt(resposta);
+		if ((certo+errado) < qtdeQuestoes) {
+
+			if (getProduto() ==valor) {
+				certo++;
+			}else{
+				errado++;
+			}
+		}
+
+		if ((certo+errado) >= qtdeQuestoes) {
+			JOptionPane.showMessageDialog(null,  "   R E S U L T A D O\n\n************************\n\nAcertos: " + certo	+"\nErros: " + errado +	"\n\n************************\n************************\n");
+			System.exit(0);
+		}
+
+		percentualAcerto = certo*qtdeQuestoesPorFase;
+		System.out.println("Percentual de Acerto: " + percentualAcerto);
+
+	}
 
 	public void nivel(){
 
@@ -40,44 +70,51 @@ public class Tabuada {
 
 		switch (array) {
 		case 0:
-			teste(array);
+			subNivel(array);
 			break
 			;
 		case 1:
-			teste(array);
+			subNivel(array);
 			break;
 		case 2:
-			teste(array);
+			subNivel(array);
 			break;
 		case 3:
-			teste(array);
+			subNivel(array);
 			break;
 
 		default:
 			break;
 		}
 
-		if (corretas == 8) {
-			array++;
-			corretas = 0;
-			nivel();
-		}
+		if (numeroDaQuestao == qtdeQuestoesPorFase+1) {
 
+			if (certo >= Math.round((90*qtdeQuestoesPorFase)/100)) {
+				array++;
+				level = 1;
+				numeroDaQuestao = 0;
+				percentualAcerto = 0;
+				certo = 0;
+				errado = 0;
+				nivel();
+			}else{
+				if (array<0) {
+					array--;
+				}
+				level = 1;
+				numeroDaQuestao = 0;
+				percentualAcerto = 0;
+				certo = 0;
+				errado = 0;
+				//nivel();
+			}
+
+		}
 
 	}
 
+	public void subNivel(int a){
 
-	/*
-	 * ELABORAR:
-	 * TRAZER A CONTAGEM DE ACERTOS E ERROS PARA ESTA CLASSE (QTDE DE QUESTOES)
-	 * 
-	 * 
-	 */
-	
-
-
-	public void teste(int a){
-		/*******************************/
 		if (getQuestao() <= 5) {
 
 			switch (level) {
@@ -95,8 +132,8 @@ public class Tabuada {
 				break;
 			}
 
-			corretas++;
-			System.out.println("corretas: "+corretas);
+			numeroDaQuestao++;
+			System.out.println("Nro Questão: "+numeroDaQuestao);
 
 		}else{
 
@@ -105,17 +142,8 @@ public class Tabuada {
 			level++;
 			nivel();
 		}
-		/*******************************/
+
 	}
-
-
-
-
-
-
-
-
-
 
 	public void resetaMultiplicandos(){
 
@@ -145,15 +173,7 @@ public class Tabuada {
 
 		resultados = rand.toArray(new Integer[0]);//transforma o SET em array para facilitar iteracao
 
-		/*for (int i = 0; i < rand.size(); i++) {
-			System.out.println("i= " + i + " - " + resultados[i]);
-		}
-		System.out.println("\n\n");*/
-
 	}
-
-
-	//********************************************************************************************************************************************
 
 	public Tabuada() {
 
@@ -161,8 +181,6 @@ public class Tabuada {
 		resetaMultiplicandos();
 
 	}
-
-	//****************************************************************
 
 	public int getLevel() {
 		return level;

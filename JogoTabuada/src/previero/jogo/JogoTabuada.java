@@ -45,7 +45,8 @@ public class JogoTabuada {
 
 		btR1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				confere(btR1.getText());
+				t.confere(btR1.getText());
+				reset();
 			}
 		});
 		btR1.setBounds(44, 127, 89, 23);
@@ -53,7 +54,8 @@ public class JogoTabuada {
 
 		btR2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				confere(btR2.getText());
+				t.confere(btR2.getText());
+				reset();
 			}
 		});
 		btR2.setBounds(177, 127, 89, 23);
@@ -61,7 +63,8 @@ public class JogoTabuada {
 
 		btR3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				confere(btR3.getText());
+				t.confere(btR3.getText());
+				reset();
 			}
 		});
 		btR3.setBounds(310, 127, 89, 23);
@@ -75,60 +78,24 @@ public class JogoTabuada {
 		reset();
 	}
 
-	//****************************************************************
-
 	Tabuada t = new Tabuada();
 	JLabel lblConta = new JLabel();
 	JButton btR1 = new JButton();
 	JButton btR2 = new JButton();
 	JButton btR3 = new JButton();
-	String resultado;
-
-	int qtdeQuestoes = 15;
-	
-	public int getQtdeQuestoes(){
-		return this.qtdeQuestoes;
-	}
-	
-	int acertos = 0;
-	int erros = 0;
 
 	public void reset(){
 
 		t.nivel();
-
-		resultado = Integer.toString(t.getProduto());
 		lblConta.setText(t.toString());
 
 		btR1.setText(Integer.toString(t.getResultados()[0]));
 		btR2.setText(Integer.toString(t.getResultados()[1]));
 		btR3.setText(Integer.toString(t.getResultados()[2]));	
 
-		System.out.println("toString  :  " + t.toString());
-		System.out.println("Conta     :  " + t.getMultiplicador() + " x " + t.getMultiplicando() + " = " + t.getProduto());
-		System.out.println("Respostas :  " + t.getResultados()[0] + " , " +  t.getResultados()[1] + " , " + t.getResultados()[2]);
 		System.out.println("Questão   :  " + t.getQuestao());
 		System.out.println("Level     :  " + t.getLevel() + "\n");
 
 	}
 
-	public void confere(String valor){
-
-		if ((acertos+erros) < qtdeQuestoes) {
-
-			if (resultado.equals(valor)) {
-				acertos++;
-			}else{
-				erros++;
-			}
-		}
-
-		if ((acertos+erros) >= qtdeQuestoes) {
-			JOptionPane.showMessageDialog(null,  "   R E S U L T A D O\n\n************************\n\nAcertos: " + acertos	+"\nErros: " + erros +	"\n\n************************\n************************\n");
-			System.exit(0);
-		}
-
-		reset();
-
-	}
 }
